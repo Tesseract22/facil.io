@@ -111,5 +111,9 @@ pub fn build(b: *std.Build) !void {
     // This declares intent for the library to be installed into the standard
     // location when the user invokes the "install" step (the default step when
     // running `zig build`).
+    for (b.install_tls.step.dependencies.items) |dep_step| {
+        std.log.err("install: {s}", .{dep_step.name});
+    }
+
     b.installArtifact(lib);
 }
